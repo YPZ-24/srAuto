@@ -1,0 +1,212 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+
+/*MY STYLES*/
+body{
+  background-color: #0c0c0c;
+  color: white;
+  margin: 0;
+}
+
+.car-photo-profile{
+  filter: brightness(1.5);
+}
+
+.border-top-radius-lg{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/*Car card*/
+.car-card{
+  overflow: hidden;
+  color: white;
+  border: none;
+}
+
+.car-card-red{
+  background: #DD1435;
+  background: -webkit-radial-gradient(left, #DD1435, #0c0c0c);
+  background: -moz-radial-gradient(left, #DD1435, #0c0c0c);
+  background: radial-gradient(to right, #DD1435, #0c0c0c);
+}
+
+.car-card-orange{
+  background: #dd9714;
+  background: -webkit-radial-gradient(left, #dd9714, #0c0c0c);
+  background: -moz-radial-gradient(left, #dd9714, #0c0c0c);
+  background: radial-gradient(to right, #dd9714, #0c0c0c);
+}
+
+.car-card-green{
+  background: #14dd3c;
+  background: -webkit-radial-gradient(left, #14dd3c, #0c0c0c);
+  background: -moz-radial-gradient(left, #14dd3c, #0c0c0c);
+  background: radial-gradient(to right, #14dd3c, #0c0c0c);
+}
+
+.gradient-gray{
+  background: linear-gradient(180deg, #262626 0%, #131313 50%);
+}
+
+.navbar-gray{
+  /*background: #0ccbd8;*/
+  background: #d3dd14;
+  font-weight: bold;
+  width: 100vw;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem !important;
+}
+
+.car-card:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.car-card-icon{
+  height: 110%;
+  transform: rotate(-15deg) translate(-15px);
+}
+
+.car-card-icon-container{
+  width: 100%;
+}
+
+.car-card-img{
+  width: 100%;
+  height: 100%;
+
+}
+
+/*INPUTS*/
+
+.input-bordered-white{
+  border: 1px solid rgb(218, 218, 218);
+  background-color: transparent;
+}
+
+.input-bordered-white:hover{
+  transform: scale(1.02);
+}
+
+.input-bordered-white:focus{
+  background-color: transparent;
+}
+
+.input-bordered-white::placeholder{
+  color: rgb(173, 173, 173);
+}
+
+.btn-neon-yellow{
+  background: radial-gradient(circle, #d3dd14 0%, #444806 100%);
+  border: none;
+  color: black;
+  border-radius: 20px;
+}
+
+.btn-neon-yellow:hover{
+  transform: scale(0.95);
+  color: black;
+}
+
+/*Modal*/
+
+.modal-container{
+  background: linear-gradient(180deg, #262626 0%, #131313 50%);
+  color: white;
+}
+
+.modal-conte-buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.modal-conte-buttons button{
+  width: 100%;
+}
+
+.modal-conte-buttons form{
+  width: 100%;
+}
+
+.modal-body-inputs{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+}
