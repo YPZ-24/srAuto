@@ -37,7 +37,7 @@ namespace SrAuto.Controllers
                 await _context.SaveChangesAsync();
 
                 TempData["kindInfoModal"] = "create";
-                TempData["msjInfoModal"] = "Enviado";
+                TempData["msjInfoModal"] = "Creado";
                 
                 return RedirectToAction("Users", "Config");
             }catch(Exception e){
@@ -57,7 +57,13 @@ namespace SrAuto.Controllers
             }catch(Exception e){
                 Console.Write(e);
                 TempData["kindInfoModal"] = "error";
-                TempData["msjInfoModal"] = e.Message;
+
+                var sqlException = e.GetBaseException() as SqlException;
+                if(sqlException.Number == 547){
+                    TempData["msjInfoModal"] = "No puedes eliminar este usuario, tiene relación con otros datos";
+                }else{
+                    TempData["msjInfoModal"] = e.Message;
+                }
                 return RedirectToAction("Users", "Config");
             }
         }
@@ -78,7 +84,7 @@ namespace SrAuto.Controllers
                 _context.Users.Update(user);
                 await _context.SaveChangesAsync();
 
-                TempData["kindInfoModal"] = "update";
+                TempData["kindInfoModal"] = "updated";
                 TempData["msjInfoModal"] = "Actualizado";
                 
                 return RedirectToAction("Users", "Config");

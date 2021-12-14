@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SrAuto.Data;
@@ -60,7 +61,7 @@ namespace SrAuto.Controllers
                 _context.Fixes.Update(newFix);
                 await _context.SaveChangesAsync();
 
-                TempData["kindInfoModal"] = "update";
+                TempData["kindInfoModal"] = "updated";
                 TempData["msjInfoModal"] = "Actualizado";
                 
                 return RedirectToAction("Fixes", "Config");
@@ -80,6 +81,14 @@ namespace SrAuto.Controllers
                 return RedirectToAction("Fixes", "Config");
             }catch(Exception e){
                 Console.Write(e);
+                TempData["kindInfoModal"] = "error";
+
+                var sqlException = e.GetBaseException() as SqlException;
+                if(sqlException.Number == 547){
+                    TempData["msjInfoModal"] = "No puedes eliminar este arreglo, tiene relación con otros datos";
+                }else{
+                    TempData["msjInfoModal"] = e.Message;
+                }
                 return RedirectToAction("Fixes", "Config");
             }
         }

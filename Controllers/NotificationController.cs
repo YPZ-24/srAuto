@@ -29,7 +29,7 @@ namespace SrAuto.Controllers
                 await _context.SaveChangesAsync();
 
                 TempData["kindInfoModal"] = "create";
-                TempData["msjInfoModal"] = "Enviado";
+                TempData["msjInfoModal"] = "Creado";
                 
                 return RedirectToAction(notification.ClientID.ToString(), "Client");
             }catch(Exception e){

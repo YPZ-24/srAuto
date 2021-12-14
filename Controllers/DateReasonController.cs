@@ -35,7 +35,7 @@ namespace SrAuto.Controllers
                 await _context.SaveChangesAsync();
 
                 TempData["kindInfoModal"] = "create";
-                TempData["msjInfoModal"] = "Enviado";
+                TempData["msjInfoModal"] = "Creado";
                 
                 return RedirectToAction("DateReasons", "Config");
             }catch(Exception e){
@@ -58,7 +58,7 @@ namespace SrAuto.Controllers
 
                 var sqlException = e.GetBaseException() as SqlException;
                 if(sqlException.Number == 547){
-                    TempData["msjInfoModal"] = "No puedes eliminar este asunto, tiene relación con otros datos";
+                    TempData["msjInfoModal"] = "No puedes eliminar esta razón de cita, tiene relación con otros datos";
                 }else{
                     TempData["msjInfoModal"] = e.Message;
                 }
@@ -82,7 +82,7 @@ namespace SrAuto.Controllers
                 _context.Database.ExecuteSqlRaw("UpdateDateReason "+dateReason.DateReasonID+", '"+dateReason.reason+"'");
                 await _context.SaveChangesAsync();
 
-                TempData["kindInfoModal"] = "update";
+                TempData["kindInfoModal"] = "updated";
                 TempData["msjInfoModal"] = "Actualizado";
                 
                 return RedirectToAction("DateReasons", "Config");

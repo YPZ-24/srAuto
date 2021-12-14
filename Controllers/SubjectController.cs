@@ -35,7 +35,7 @@ namespace SrAuto.Controllers
                 await _context.SaveChangesAsync();
 
                 TempData["kindInfoModal"] = "create";
-                TempData["msjInfoModal"] = "Enviado";
+                TempData["msjInfoModal"] = "Creado";
                 
                 return RedirectToAction("Subjects", "Config");
             }catch(Exception e){
@@ -82,7 +82,7 @@ namespace SrAuto.Controllers
                 _context.Subjects.Update(newSubject);
                 await _context.SaveChangesAsync();
 
-                TempData["kindInfoModal"] = "update";
+                TempData["kindInfoModal"] = "updated";
                 TempData["msjInfoModal"] = "Actualizado";
                 
                 return RedirectToAction("Subjects", "Config");

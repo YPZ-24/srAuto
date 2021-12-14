@@ -71,6 +71,11 @@ namespace SrAuto.Controllers
 
         public IActionResult Clients()
         {
+            ViewData["kindInfoModal"] = TempData["kindInfoModal"];
+            if(ViewData["kindInfoModal"] != null) {
+                ViewData["showInfoModal"] = "show";
+                ViewData["msjInfoModal"] = TempData["msjInfoModal"];
+            }
             var clients =  _context.Clients.ToList<Client>();
             return View(clients);
         }

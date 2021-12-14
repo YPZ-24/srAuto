@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SrAuto.Data;
@@ -53,9 +54,15 @@ namespace SrAuto.Controllers
                 //Si paso las validaciones, actualizamos
                 _context.Clients.Update(client);
                 await _context.SaveChangesAsync();
+
+                TempData["kindInfoModal"] = "updated";
+                TempData["msjInfoModal"] = "Actualizado";
+
                 return RedirectToAction("Clients", "Config");
             }catch(Exception e){
                 Console.Write(e);
+                TempData["kindInfoModal"] = "error";
+                TempData["msjInfoModal"] = e.Message;
                 return RedirectToAction("Clients", "Config");
             }
         }
@@ -70,10 +77,15 @@ namespace SrAuto.Controllers
                 //Si paso las validaciones, creamos
                 _context.Database.ExecuteSqlRaw("CreateClient '"+client.email+"', '"+client.cellphone+"', '"+client.address+"'");
                 await _context.SaveChangesAsync();
+
+                TempData["kindInfoModal"] = "update";
+                TempData["msjInfoModal"] = "Creado";
                 
                 return RedirectToAction("Clients", "Config");
             }catch(Exception e){
                 Console.Write(e);
+                TempData["kindInfoModal"] = "error";
+                TempData["msjInfoModal"] = e.Message;
                 return RedirectToAction("Clients", "Config");
             }
         }
@@ -86,6 +98,14 @@ namespace SrAuto.Controllers
                 return RedirectToAction("Clients", "Config");
             }catch(Exception e){
                 Console.Write(e);
+                TempData["kindInfoModal"] = "error";
+
+                var sqlException = e.GetBaseException() as SqlException;
+                if(sqlException.Number == 547){
+                    TempData["msjInfoModal"] = "No puedes eliminar este cliente, tiene relación con otros datos";
+                }else{
+                    TempData["msjInfoModal"] = e.Message;
+                }
                 return RedirectToAction("Clients", "Config");
             }
         }

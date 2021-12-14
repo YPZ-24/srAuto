@@ -172,6 +172,7 @@ body{
 
 .input-bordered-white:focus{
   background-color: transparent;
+  color: white;
 }
 
 .input-bordered-white::placeholder{
