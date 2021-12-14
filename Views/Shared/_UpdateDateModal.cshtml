@@ -1,0 +1,97 @@
+@{
+    @model Date
+    double total = 0;
+    string displayPayButton = @Model.status == 1 ? "bloc" : "none";
+    string displayFormDateFix = @Model.status == 1 ? "bloc" : "none";
+}
+
+<div class="modal fade" id="updateDateModal-@Model.DateID">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content modal-container">
+            <div class="modal-header border-0">
+                <div class="row">
+                    <div class="col-12">
+                        <h4>@Model.name</h4>
+                    </div>
+                    <div class="col-12">
+                        <h6>@Model.datet.ToString("dd/MM/yyyy")</h6>
+                    </div>
+                    <div class="col-12">
+                        <p>@Model.description</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body modal-body-inputs">
+                <form method="POST" asp-action="Create" asp-controller="DateFix" style="display: @displayFormDateFix">
+                    <table class="table table-sm table-borderless m-0">
+                        <tbody>
+                            <tr>
+                                <input type="hidden" name="DateID" value="@Model.DateID" />
+                                <td>
+                                    <select name="FixID" class="custom-select" onchange="document.querySelector('#inFixCost').value = 20">
+                                        @foreach (Fix f in (List<Fix>) ViewData["fixes"]){
+                                            <option value="@f.FixID">
+                                                $@(f.price) - @(f.fix)
+                                            </option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" name="extraCost" placeholder="Extra" class="form-control">
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-dark">
+                                        <i class="bi bi-send-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <table class="table table-sm text-center table-light">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th></th>
+                            <th>ARREGLO</th>
+                            <th>COSTO</th>
+                            <th>EXTRA</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DateFix f in (List<DateFix>) Model.DateFixes){
+                            <tr>
+                                <td>
+                                    <form method="POST" asp-action="Delete" asp-controller="DateFix">
+                                        <input type="hidden" name="DateFixID" value="@f.DateFixID" />
+                                        <button type="submit" class="btn">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>@f.Fix.fix</td>
+                                <td>$@f.Fix.price</td>
+                                <td>$@f.extraCost</td>
+                                @{total = total + f.Fix.price+f.extraCost;}
+                                <td>$@(f.Fix.price+f.extraCost)</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" class="text-right">TOTAL</td>
+                            <td>@total</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                
+            </div>
+            <div class="modal-footer border-0 modal-conte-buttons" style="display: @displayPayButton">
+                <form method="POST"  asp-action="Pay" asp-controller="Date">
+                    <input type="hidden" name="DateID" value="@Model.DateID" />
+                    <button type="submit" class="btn btn-light btn-block">PAGAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

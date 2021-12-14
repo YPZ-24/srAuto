@@ -1,16 +1,25 @@
+@{
+    var ClientID = ViewData["ClientID"];
+}
+
 <div class="modal fade" id="createNotificationModal">
     <div class="modal-dialog">
         <div class="modal-content modal-container">
-            <form class="">
+            <form method="POST" asp-action="Create" asp-controller="Notification">
                 <div class="modal-header border-0">
                     <h4 class="modal-title">Enviar Notificación</h4>
                 </div>
                 <div class="modal-body modal-body-inputs">
-                    <input type="text" id="carTag" placeholder="Asunto" class="form-control input-bordered-white">
-                    <textarea type="text" id="carBrand" rows="5" placeholder="Descripción" class="form-control input-bordered-white"></textarea>
+                    <input type="hidden" name="ClientID" value="@ClientID" />
+                    <select name="SubjectID" class="custom-select">
+                        @foreach (Subject s in (List<Subject>) ViewData["subjects"]){
+                            <option value="@s.SubjectID">@s.subject</option>
+                        }
+                    </select>
+                    <textarea name="description" type="text" id="carBrand" rows="5" placeholder="Descripción" class="form-control input-bordered-white"></textarea>
                 </div>
                 <div class="modal-footer border-0 modal-conte-buttons">
-                    <button type="button" class="btn btn-light">
+                    <button type="submit" class="btn btn-light">
                         GUARDAR
                     </button>
                 </div>

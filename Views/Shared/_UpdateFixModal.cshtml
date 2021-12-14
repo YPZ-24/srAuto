@@ -1,0 +1,25 @@
+@{
+    @model Fix
+}
+
+<div class="modal fade" id="updateFixModal-@Model.FixID">
+    <div class="modal-dialog">
+        <div class="modal-content modal-container">
+            <form method="POST" asp-action="Update" asp-controller="Fix">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title">Actualizar Arreglo</h4>
+                </div>
+                <div class="modal-body modal-body-inputs">
+                    <input type="hidden" value="@Model.FixID" name="FixID" />
+                    <input type="text" asp-for="fix" value="@Model.fix" class="form-control input-bordered-white">
+                    <input type="number" asp-for="price" value="@Model.price" class="form-control input-bordered-white">
+                </div>
+                <div class="modal-footer border-0 modal-conte-buttons">
+                    <button type="submit" class="btn btn-light">
+                        GUARDAR
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

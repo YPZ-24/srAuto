@@ -1,0 +1,21 @@
+<div class="modal fade" id="createUserModal">
+    <div class="modal-dialog">
+        <div class="modal-content modal-container">
+            <form method="POST" asp-action="Create" asp-controller="User">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title">Crear Usuario</h4>
+                </div>
+                <div class="modal-body modal-body-inputs">
+                    <input type="email" name="email" placeholder="Correo" class="form-control input-bordered-white">
+                    <input type="password" name="pass" placeholder="Contraseña" class="form-control input-bordered-white">
+                    <input type="password" name="confPass" placeholder="Confirma Contraseña" class="form-control input-bordered-white">
+                </div>
+                <div class="modal-footer border-0 modal-conte-buttons">
+                    <button type="submit" class="btn btn-light">
+                        GUARDAR
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

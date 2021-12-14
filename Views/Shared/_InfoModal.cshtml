@@ -1,0 +1,27 @@
+@{
+    String iconInfoModal;
+    switch (ViewData["kindInfoModal"]){
+        case "error":
+            iconInfoModal = "bi bi-emoji-dizzy-fill";
+        break;
+        default:
+            iconInfoModal = "bi bi-emoji-sunglasses-fill";
+        break;
+    }
+    var msjInfoModal = ViewData["msjInfoModal"];
+}
+
+<div class="modal" tabindex="-1" id="InfoModal">
+    <div class="modal-dialog">
+        <div class="modal-info-container p-2">
+            <i class="modal-icon fa @iconInfoModal">
+            </i>
+            <div>
+                <h5 class="modal-title-center">@msjInfoModal</h5>
+            </div>
+            <div class="modal-conte-buttons">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

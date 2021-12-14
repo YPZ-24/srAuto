@@ -4,7 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SrAuto.Data;
 using SrAuto.Models;
 
 namespace SrAuto.Controllers
@@ -12,9 +14,80 @@ namespace SrAuto.Controllers
     public class ClientController : Controller
     {
 
-        public IActionResult Index()
+        private readonly SrAutoContext _context;
+
+        public ClientController(SrAutoContext context)
         {
-            return View();
+            _context = context;
+        }
+
+        [HttpGet]
+        [Route("Client/{ClientID}")]
+        public IActionResult Index(int ClientID)
+        {
+            ViewData["kindInfoModal"] = TempData["kindInfoModal"];
+            if(ViewData["kindInfoModal"] != null) {
+                ViewData["showInfoModal"] = "show";
+                ViewData["msjInfoModal"] = TempData["msjInfoModal"];
+            }
+
+            ViewData["subjects"] = _context.Subjects.ToList();
+            ViewData["clientCars"] = _context.Cars.FromSqlRaw<Car>("GetClientCars "+ClientID).ToList();
+            ViewData["ClientID"] = ClientID;
+            var client = _context.Clients.AsNoTracking().Where(c => c.ClientID == ClientID).FirstOrDefault<Client>();
+            return View(client);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Update([Bind("email, cellphone, address, ClientID")] Client client){
+            try{
+                //Validamos si el correo ya existe
+                Client isClientTaken = _context.Clients.AsNoTracking().Where(c => c.email == client.email).FirstOrDefault<Client>();
+                //Si el email existe y no es la que esta siendo editada
+                if(isClientTaken != null){
+                    if(isClientTaken.ClientID != client.ClientID){
+                        throw new Exception("El correo ya esta en uso");
+                    }
+                }
+
+                //Si paso las validaciones, actualizamos
+                _context.Clients.Update(client);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Clients", "Config");
+            }catch(Exception e){
+                Console.Write(e);
+                return RedirectToAction("Clients", "Config");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Create([Bind("email, cellphone, address")] Client client){
+            try{
+                Client isClientTaken = _context.Clients.AsNoTracking().Where(c => c.email == client.email).FirstOrDefault<Client>();
+                if(isClientTaken != null){
+                    throw new Exception("El correo ya esta en uso");
+                }
+                //Si paso las validaciones, creamos
+                _context.Database.ExecuteSqlRaw("CreateClient '"+client.email+"', '"+client.cellphone+"', '"+client.address+"'");
+                await _context.SaveChangesAsync();
+                
+                return RedirectToAction("Clients", "Config");
+            }catch(Exception e){
+                Console.Write(e);
+                return RedirectToAction("Clients", "Config");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete([Bind("ClientID")] Client client){
+            try{
+                _context.Clients.Remove(client);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Clients", "Config");
+            }catch(Exception e){
+                Console.Write(e);
+                return RedirectToAction("Clients", "Config");
+            }
         }
 
     }

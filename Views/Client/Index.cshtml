@@ -1,56 +1,73 @@
 @{
     ViewData["Title"] = "Sr.  Auto";
+    @model Client
 }
 
 <div class="row p-3">
     <div class="col-sm-12 col-md-4 col-lg-3 px-3">
-        <div class="gradient-gray border-top-radius-lg">
-            <img class="img-fluid mx-auto d-block car-photo-profile border-top-radius-lg" src="https://th.bing.com/th/id/OIP.7-JQojJ_W6xAmiZ3eU04NwHaHX?pid=ImgDet&rs=1" alt="">
+        <div class="gradient-gray">
             <div  class="text-center p-3">
                 <p class="m-0 h6">CORREO</p>
-                <p class="m-0 mb-2">CORREO</p>
+                <p class="m-0 mb-2">@Model.email</p>
                 <p class="m-0 h6">CELULAR</p>
-                <p class="m-0 mb-2">CELULAR</p>
+                <p class="m-0 mb-2">@Model.cellphone</p>
                 <p class="m-0 h6">DIRECCIÓN</p>
-                <p class="m-0">DIRECCIÓN</p>
-                <partial name="_UpdateCarModal" />
-                <button class="btn btn-neon-yellow btn-block mt-3" data-toggle="modal" data-target="#updateCarModal">ACTUALIZAR</button>
+                <p class="m-0">@Model.address</p>
+                <partial name="_CreateNotificationModal" />
+                <button class="btn btn-neon-yellow btn-block mt-3" data-toggle="modal" data-target="#createNotificationModal">NOTIFICAR</button>
             </div>
         </div>
     </div>
-    <div class="col-sm-12 col-md-8 col-lg-9 gradient-gray p-3">
-        <div class="mb-4">
-            <div class="row">
-                <div class="col-11">
-                    <input type="search" placeholder="KS 9412" class="form-control input-bordered-white">
-                </div>
-                <div class="col-1">
-                    <button class="btn btn-light">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!--Lista de reparaciones-->
+    <div class="col-sm-12 col-md-8 col-lg-9">
         <div class="row">
-        @{for(var i=0; i<15; i++){
-            <partial name="_DateModal" />
-            <div class="col-sm-12 col-lg-4 mb-3" data-toggle="modal" data-target="#dateModal">
-                <div class="card car-card car-card-orange">
-                    <div class="row g-0">
-                        <div class="col-md-5 p-0 car-card-icon-container">
-                            <img class="img-fluid mx-auto d-block car-card-img" src="https://cdn.topgear.es/sites/navi.axelspringer.es/public/styles/480/public/media/image/2018/06/bugatti-chiron-nurburgring_0.jpg?itok=0TUR83J8" alt="">
+            <div class="col-12 gradient-gray p-3 mb-4">
+                <partial name="_CreateCarModal" />
+                <button class="btn btn-light btn-block" data-toggle="modal" data-target="#createCarModal">AGREGAR AUTO</button>
+            </div>
+            <div class="col-12 gradient-gray p-3">
+                <div class="mb-4">
+                    <div class="row">
+                        <div class="col-11">
+                            <input type="search" placeholder="KS 9412" class="form-control input-bordered-white">
                         </div>
-                        <div class="col-md-7">
-                        <div class="card-body">
-                            <h3 class="card-title m-0">KS-24-12</h3>
-                            <p class="card-text m-0">En progreso</p>
-                        </div>
+                        <div class="col-1">
+                            <button class="btn btn-light">
+                                <i class="bi bi-search"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
+                <!--Lista de autos-->
+                <div class="row">
+                @foreach (Car c in (List<Car>) ViewData["clientCars"]){
+                    <a class="col-sm-12 col-lg-4 mb-3 btn" href="~/Car/@c.CarID">
+                        <div class="card car-card car-card-gray">
+                            <div class="row g-0">
+                                <div class="col-md-5 p-0 car-card-icon-container">
+                                    <img class="img-fluid mx-auto d-block car-card-img" src="@c.photoUrl" alt="">
+                                </div>
+                                <div class="col-md-7">
+                                <div class="card-body px-0">
+                                    <h3 class="card-title m-0">@c.carTag</h3>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                }
+                </div>
             </div>
-        }}
         </div>
     </div>
 </div>
+
+<!--Modal Info-->
+@await Html.PartialAsync("_InfoModal")
+@section scripts{
+    <script>
+        @{
+            if (ViewData["showInfoModal"] == null){ ViewData["showInfoModal"] = "hide"; }
+        }
+        $('#InfoModal').modal('@ViewData["showInfoModal"]')
+    </script>
+}

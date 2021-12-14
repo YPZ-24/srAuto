@@ -1,0 +1,27 @@
+@{
+    var ClientID = ViewData["ClientID"];
+}
+
+<div class="modal fade" id="createCarModal">
+    <div class="modal-dialog">
+        <div class="modal-content modal-container">
+            <form method="POST" asp-action="Create" asp-controller="Car">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title">Crear Auto</h4>
+                </div>
+                <div class="modal-body modal-body-inputs">
+                    <input type="hidden" name="ClientID" value="@ClientID" />
+                    <input name="carTag" type="text" placeholder="Matricula" class="form-control input-bordered-white" required>
+                    <input name="brand" type="text" placeholder="Marca" class="form-control input-bordered-white" required>
+                    <input name="model" type="text" placeholder="Modelo" class="form-control input-bordered-white" required>
+                    <input name="photoUrl" type="text" placeholder="URL Imagen" class="form-control input-bordered-white" required>
+                </div>
+                <div class="modal-footer border-0 modal-conte-buttons">
+                    <button type="submit" class="btn btn-light">
+                        GUARDAR
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

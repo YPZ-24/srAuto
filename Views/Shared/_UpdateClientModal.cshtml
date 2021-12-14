@@ -1,0 +1,24 @@
+@model Client
+
+<div class="modal fade" id="updateClientModal-@Model.ClientID">
+    <div class="modal-dialog">
+        <div class="modal-content modal-container">
+            <form method="POST" asp-action="Update" asp-controller="Client">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title">Actualizar Cliente</h4>
+                </div>
+                <input type="hidden" asp-for="ClientID" />
+                <div class="modal-body modal-body-inputs">
+                    <input asp-for="email" value="@Model.email" class="form-control input-bordered-white">
+                    <input asp-for="cellphone" value="@Model.cellphone" class="form-control input-bordered-white">
+                    <input asp-for="address" value="@Model.address" class="form-control input-bordered-white">
+                </div>
+                <div class="modal-footer border-0 modal-conte-buttons">
+                    <button type="submit" class="btn btn-light">
+                        GUARDAR
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

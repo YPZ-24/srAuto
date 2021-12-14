@@ -1,0 +1,61 @@
+@model List<User>
+
+<div>
+
+    <h2 class="my-5 banner-title text-center">USUARIOS</h2>
+
+    <partial name="_CreateUserModal" />
+    <button class="btn btn-light mb-4 btn-block mt-3" data-toggle="modal" data-target="#createUserModal">NUEVO</button>
+
+    <table class="table table-sm text-center table-light">
+        <thead class="thead-dark">
+            <tr>
+                <th></th>
+                <th></th>
+                <th>CORREO</th>
+                <th>CONTRASEÑA</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var u in Model){
+                <tr>
+                    <td>
+                        @(
+                            await Html.PartialAsync("_GenericDeleteModal",
+                                new ViewDataDictionary(ViewData){
+                                    { "modalId", @u.UserID },
+                                    { "modalNameId", "UserID" },
+                                    { "modalTitle", "¿Seguro que desea eliminar este Usuario?" },
+                                    { "modalFormAction", "Delete" },
+                                    { "modalFormController", "User" }
+                                }
+                            )
+                        )
+                        <button class="btn" data-toggle="modal" data-target="#genericDeleteModal-@u.UserID">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </td>
+                    <td>
+                        @await Html.PartialAsync("_UpdateUserModal", u)
+                        <button class="btn" data-toggle="modal" data-target="#updateUserModal-@u.UserID">
+                            <i class="bi bi-pen-fill"></i>
+                        </button>
+                    </td>
+                    <td>@u.email</td>
+                    <td>@u.pass</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!--Modal Info-->
+@await Html.PartialAsync("_InfoModal")
+@section scripts{
+    <script>
+        @{
+            if (ViewData["showInfoModal"] == null){ ViewData["showInfoModal"] = "hide"; }
+        }
+        $('#InfoModal').modal('@ViewData["showInfoModal"]')
+    </script>
+}

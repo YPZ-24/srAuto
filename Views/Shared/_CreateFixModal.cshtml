@@ -1,0 +1,20 @@
+<div class="modal fade" id="createFixModal">
+    <div class="modal-dialog">
+        <div class="modal-content modal-container">
+            <form method="POST" asp-action="Create" asp-controller="Fix">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title">Crear Arreglo</h4>
+                </div>
+                <div class="modal-body modal-body-inputs">
+                    <input type="text" name="fix" placeholder="Arreglo" class="form-control input-bordered-white" required>
+                    <input type="number" name="price" placeholder="Precio" class="form-control input-bordered-white" required>
+                </div>
+                <div class="modal-footer border-0 modal-conte-buttons">
+                    <button type="submit" class="btn btn-light">
+                        GUARDAR
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

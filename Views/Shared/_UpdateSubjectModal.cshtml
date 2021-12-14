@@ -1,0 +1,24 @@
+@{
+    @model Subject
+}
+
+<div class="modal fade" id="updateSubjectModal-@Model.SubjectID">
+    <div class="modal-dialog">
+        <div class="modal-content modal-container">
+            <form method="POST" asp-action="Update" asp-controller="Subject">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title">Actualizar Asunto</h4>
+                </div>
+                <div class="modal-body modal-body-inputs">
+                    <input type="hidden" value="@Model.SubjectID" name="SubjectID" />
+                    <input type="text" asp-for="subject" value="@Model.subject" class="form-control input-bordered-white">
+                </div>
+                <div class="modal-footer border-0 modal-conte-buttons">
+                    <button type="submit" class="btn btn-light">
+                        GUARDAR
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

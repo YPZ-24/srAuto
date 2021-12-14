@@ -1,0 +1,57 @@
+@model List<Client>
+
+<div>
+
+    <h2 class="my-5 banner-title text-center">CLIENTES</h2>
+
+    <partial name="_CreateClientModal" />
+    <button class="btn btn-light mb-4 btn-block mt-3" data-toggle="modal" data-target="#createClientModal">NUEVO</button>
+
+    <table class="table table-sm text-center table-light">
+        <thead class="thead-dark">
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>CORREO</th>
+                <th>CELULAR</th>
+                <th>DIRECCIÓN</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model){
+                <tr>
+                    <td>
+                        @(
+                            await Html.PartialAsync("_GenericDeleteModal",
+                                new ViewDataDictionary(ViewData){
+                                    { "modalId", c.ClientID },
+                                    { "modalNameId", "ClientID" },
+                                    { "modalTitle", "¿Seguro que desea eliminar este Cliente?" },
+                                    { "modalFormAction", "Delete" },
+                                    { "modalFormController", "Client" }
+                                }
+                            )
+                        )
+                        <button class="btn" data-toggle="modal" data-target="#genericDeleteModal-@c.ClientID">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </td>
+                    <td>
+                        @await Html.PartialAsync("_UpdateClientModal", c)
+                        <button class="btn" data-toggle="modal" data-target="#updateClientModal-@c.ClientID">
+                            <i class="bi bi-pen-fill"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <a class="btn" href="~/Client/@c.ClientID">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                    </td>
+                    <td>@c.email</td>
+                    <td>@c.cellphone</td>
+                    <td>@c.address</td>
+                </tr>
+            }
+    </table>
+</div>

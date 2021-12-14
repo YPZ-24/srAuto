@@ -16,10 +16,10 @@ namespace SrAuto.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Login()
+        public IActionResult SearchBars()
         {
-            return RedirectToAction("Index", "Car");
+            return View();
         }
+
     }
 }

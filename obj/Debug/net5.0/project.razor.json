@@ -15619,8 +15619,53 @@
   "RootNamespace": "SrAuto",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_CreateCarModal.cshtml",
+      "TargetPath": "Views\\Shared\\_CreateCarModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_UpdateUserModal.cshtml",
+      "TargetPath": "Views\\Shared\\_UpdateUserModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Config\\Dates.cshtml",
+      "TargetPath": "Views\\Config\\Dates.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_UpdateSubjectModal.cshtml",
+      "TargetPath": "Views\\Shared\\_UpdateSubjectModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_InfoModal.cshtml",
+      "TargetPath": "Views\\Shared\\_InfoModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Config\\Users.cshtml",
+      "TargetPath": "Views\\Config\\Users.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_UpdateFixModal.cshtml",
+      "TargetPath": "Views\\Shared\\_UpdateFixModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Config\\Clients.cshtml",
+      "TargetPath": "Views\\Config\\Clients.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_CreateUserModal.cshtml",
+      "TargetPath": "Views\\Shared\\_CreateUserModal.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15634,8 +15679,28 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_DateModal.cshtml",
-      "TargetPath": "Views\\Shared\\_DateModal.cshtml",
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_CreateFixModal.cshtml",
+      "TargetPath": "Views\\Shared\\_CreateFixModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_CreateDateModal.cshtml",
+      "TargetPath": "Views\\Shared\\_CreateDateModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_CreateSubjectModal.cshtml",
+      "TargetPath": "Views\\Shared\\_CreateSubjectModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_UpdateDateModal.cshtml",
+      "TargetPath": "Views\\Shared\\_UpdateDateModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_UpdateClientModal.cshtml",
+      "TargetPath": "Views\\Shared\\_UpdateClientModal.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15651,6 +15716,21 @@
     {
       "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Client\\Index.cshtml",
       "TargetPath": "Views\\Client\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_CreateClientModal.cshtml",
+      "TargetPath": "Views\\Shared\\_CreateClientModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Home\\SearchBars.cshtml",
+      "TargetPath": "Views\\Home\\SearchBars.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_GenericDeleteModal.cshtml",
+      "TargetPath": "Views\\Shared\\_GenericDeleteModal.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15681,6 +15761,16 @@
     {
       "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Config\\Fixes.cshtml",
+      "TargetPath": "Views\\Config\\Fixes.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Config\\Subjects.cshtml",
+      "TargetPath": "Views\\Config\\Subjects.cshtml",
       "FileKind": "mvc"
     }
   ],

@@ -115,15 +115,29 @@ body{
   background: radial-gradient(to right, #14dd3c, #0c0c0c);
 }
 
+.car-card-gray{
+  background: #d6d6d6;
+  background: -webkit-radial-gradient(left, #d6d6d6, #272727);
+  background: -moz-radial-gradient(left, #d6d6d6, #272727);
+  background: radial-gradient(to right, #d6d6d6, #272727);
+}
+
 .gradient-gray{
   background: linear-gradient(180deg, #262626 0%, #131313 50%);
+}
+
+.banner-title{
+  background-color: rgba(211, 221, 20, 0.25);
+  border: 1px solid #d3dd14;
+  color: white;
+  padding: 5px;
 }
 
 .navbar-gray{
   /*background: #0ccbd8;*/
   background: #d3dd14;
   font-weight: bold;
-  width: 100vw;
+  width: 100%;
   color: black;
   display: flex;
   align-items: center;
@@ -148,7 +162,7 @@ body{
 .car-card-img{
   width: 100%;
   height: 100%;
-
+  min-height: 120px;
 }
 
 /*INPUTS*/
@@ -178,7 +192,7 @@ body{
 }
 
 .btn-neon-yellow:hover{
-  transform: scale(0.95);
+  transform: scale(0.98);
   color: black;
 }
 
@@ -187,6 +201,14 @@ body{
 .modal-container{
   background: linear-gradient(180deg, #262626 0%, #131313 50%);
   color: white;
+}
+
+.modal-info-container{
+  background: linear-gradient(180deg, #262626 0%, #131313 50%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modal-conte-buttons{
@@ -209,4 +231,64 @@ body{
   width: 100%;
   flex-direction: column;
   gap: 10px;
+}
+
+.modal-icon{
+  font-size: 5rem !important;
+}
+
+.modal-title-center{
+  font-size: 1.7rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.modal-container-info{
+  padding: 25px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/*SEARCH BARS*/
+.conte-search-bars{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-search-bars{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-search-bars > input{
+  border-radius: 50px;
+  padding: 25px;
+  font-size: 1.5rem;
+  text-align: center;
+  border: 2px solid #858585;
+  background-color: transparent;
+}
+
+.form-search-bars > button{
+  border-radius: 50px;
+}
+
+.circle-icon{
+  background-color: #d3dd14;
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+  margin-bottom: 30px;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
 }

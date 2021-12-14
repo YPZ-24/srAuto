@@ -1,0 +1,24 @@
+@{
+    var modalId = ViewData["modalId"];
+    var modalTitle = ViewData["modalTitle"];
+    var modalFormAction = ViewData["modalFormAction"];
+    var modalFormController = ViewData["modalFormController"];
+    var modalNameId = ViewData["modalNameId"];
+}
+
+<div class="modal fade" id="genericDeleteModal-@modalId">
+    <div class="modal-dialog">
+        <div class="modal-content modal-container">
+            <form method="POST" asp-action="@modalFormAction" asp-controller="@modalFormController">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title-center">@modalTitle</h5>
+                </div>
+                <div class="modal-footer border-0 modal-conte-buttons">
+                    <input type="hidden" value="@modalId" name="@modalNameId" />
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-light">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

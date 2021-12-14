@@ -1,0 +1,21 @@
+<div class="modal fade" id="createClientModal">
+    <div class="modal-dialog">
+        <div class="modal-content modal-container">
+            <form method="POST" asp-action="Create" asp-controller="Client">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title">Crear Cliente</h4>
+                </div>
+                <div class="modal-body modal-body-inputs">
+                    <input type="text" placeholder="Correo" class="form-control input-bordered-white" name="email" required>
+                    <input type="text" placeholder="Celular" class="form-control input-bordered-white" name="cellphone" required>
+                    <input type="text" placeholder="Dirección" class="form-control input-bordered-white" name="address" required>
+                </div>
+                <div class="modal-footer border-0 modal-conte-buttons">
+                    <button type="submit" class="btn btn-light">
+                        CREAR
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

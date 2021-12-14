@@ -1,0 +1,78 @@
+@{
+    @model List<Date>
+}
+
+<div>
+
+    <h2 class="my-5 banner-title text-center">CITAS</h2>
+
+    <partial name="_CreateDateModal" />
+    <button class="btn btn-light mb-4 btn-block mt-3" data-toggle="modal" data-target="#createDateModal">NUEVA</button>
+
+    <table class="table table-sm text-center table-light">
+        <thead class="thead-dark">
+            <tr>
+                <th></th>
+                <th></th>
+                <th>matricula</th>
+                <th>fecha</th>
+                <th>name</th>
+                <th>status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Date d in (List<Date>) Model){
+                <tr>
+                    <td>
+                        @(
+                            await Html.PartialAsync("_GenericDeleteModal",
+                                new ViewDataDictionary(ViewData){
+                                    { "modalId", d.DateID },
+                                    { "modalNameId", "DateID" },
+                                    { "modalTitle", "¿Seguro que desea eliminar esta Cita?" },
+                                    { "modalFormAction", "Delete" },
+                                    { "modalFormController", "Date" }
+                                }
+                            )
+                        )
+                        <button class="btn" data-toggle="modal" data-target="#genericDeleteModal-@d.DateID">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </td>
+                    <td>
+                        @await Html.PartialAsync("_UpdateDateModal", d)
+                        <button class="btn" data-toggle="modal" data-target="#updateDateModal-@d.DateID">
+                            <i class="bi bi-pen-fill"></i>
+                        </button>
+                    </td>
+                    <td>@d.carTag</td>
+                    <td>@d.datet.ToString("dd/MM/yyyy")</td>
+                    <td>@d.name</td>
+                    @{
+                        string dateStatusTxt = "";
+                        switch (d.status){
+                            case 1: 
+                                dateStatusTxt = "CREADA";
+                                break;
+                            case 2: 
+                                dateStatusTxt = "PAGADA";
+                                break;
+                        }
+                        
+                    }
+                    <td>@dateStatusTxt</td>
+                </tr>
+            }
+    </table>
+</div>
+
+<!--Modal Info-->
+@await Html.PartialAsync("_InfoModal")
+@section scripts{
+    <script>
+        @{
+            if (ViewData["showInfoModal"] == null){ ViewData["showInfoModal"] = "hide"; }
+        }
+        $('#InfoModal').modal('@ViewData["showInfoModal"]')
+    </script>
+}

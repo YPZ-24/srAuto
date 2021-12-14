@@ -1,0 +1,27 @@
+<div class="modal fade" id="createDateModal">
+    <div class="modal-dialog">
+        <div class="modal-content modal-container">
+            <form method="POST" asp-action="Create" asp-controller="Date">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title">Crear Cita</h4>
+                </div>
+                <div class="modal-body modal-body-inputs">
+                    <input name="carTag" type="text" placeholder="CarTag" class="form-control input-bordered-white">
+                    <select name="DateReasonID" class="custom-select">
+                        @foreach (DateReason dr in (List<DateReason>) ViewData["dateReasons"]){
+                            <option value="@dr.DateReasonID">@dr.reason</option>
+                        }
+                    </select>
+                    <input name="name" type="text" placeholder="Nombre" class="form-control input-bordered-white">
+                    <input name="datet" type="datetime-local" class="form-control input-bordered-white">
+                    <textarea name="description" type="text" id="carBrand" rows="5" placeholder="Descripción" class="form-control input-bordered-white"></textarea>
+                </div>
+                <div class="modal-footer border-0 modal-conte-buttons">
+                    <button type="submit" class="btn btn-light">
+                        GUARDAR
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

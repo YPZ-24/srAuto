@@ -1,0 +1,49 @@
+@model List<Fix>
+
+<div>
+
+    <h2 class="my-5 banner-title text-center">ARREGLOS</h2>
+
+    <partial name="_CreateFixModal" />
+    <button class="btn btn-light mb-4 btn-block mt-3" data-toggle="modal" data-target="#createFixModal">NUEVO</button>
+
+    <table class="table table-sm text-center table-light">
+        <thead class="thead-dark">
+            <tr>
+                <th></th>
+                <th></th>
+                <th>FIX</th>
+                <th>PRICE</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var f in Model){
+                <tr>
+                    <td>
+                        @(
+                            await Html.PartialAsync("_GenericDeleteModal",
+                                new ViewDataDictionary(ViewData){
+                                    { "modalId", @f.FixID },
+                                    { "modalNameId", "FixID" },
+                                    { "modalTitle", "¿Seguro que desea eliminar este Arreglo?" },
+                                    { "modalFormAction", "Delete" },
+                                    { "modalFormController", "Fix" }
+                                }
+                            )
+                        )
+                        <button class="btn" data-toggle="modal" data-target="#genericDeleteModal-@f.FixID">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </td>
+                    <td>
+                        @await Html.PartialAsync("_UpdateFixModal", f)
+                        <button class="btn" data-toggle="modal" data-target="#updateFixModal-@f.FixID">
+                            <i class="bi bi-pen-fill"></i>
+                        </button>
+                    </td>
+                    <td>@f.fix</td>
+                    <td>@f.price</td>
+                </tr>
+            }
+    </table>
+</div>

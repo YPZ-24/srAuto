@@ -1,0 +1,59 @@
+@model List<Subject>
+
+<div>
+
+    <h2 class="my-5 banner-title text-center">ASUNTOS</h2>
+
+    <partial name="_CreateSubjectModal" />
+    <button class="btn btn-light mb-4 btn-block mt-3" data-toggle="modal" data-target="#createSubjectModal">NUEVO</button>
+
+    <table class="table table-sm text-center table-light">
+        <thead class="thead-dark">
+            <tr>
+                <th></th>
+                <th></th>
+                <th>SUBJECT</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model){
+                <tr>
+                    <td>
+                        @(
+                            await Html.PartialAsync("_GenericDeleteModal",
+                                new ViewDataDictionary(ViewData){
+                                    { "modalId", @s.SubjectID },
+                                    { "modalNameId", "SubjectID" },
+                                    { "modalTitle", "¿Seguro que desea eliminar este Asunto?" },
+                                    { "modalFormAction", "Delete" },
+                                    { "modalFormController", "Subject" }
+                                }
+                            )
+                        )
+                        <button class="btn" data-toggle="modal" data-target="#genericDeleteModal-@s.SubjectID">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </td>
+                    <td>
+                        @await Html.PartialAsync("_UpdateSubjectModal", s)
+                        <button class="btn" data-toggle="modal" data-target="#updateSubjectModal-@s.SubjectID">
+                            <i class="bi bi-pen-fill"></i>
+                        </button>
+                    </td>
+                    <td>@s.subject</td>
+                </tr>
+            }
+        <tbody/>
+    </table>
+</div>
+
+<!--Modal Info-->
+@await Html.PartialAsync("_InfoModal")
+@section scripts{
+    <script>
+        @{
+            if (ViewData["showInfoModal"] == null){ ViewData["showInfoModal"] = "hide"; }
+        }
+        $('#InfoModal').modal('@ViewData["showInfoModal"]')
+    </script>
+}

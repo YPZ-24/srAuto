@@ -1,0 +1,25 @@
+@{
+    @model User
+}
+
+<div class="modal fade" id="updateUserModal-@Model.UserID">
+    <div class="modal-dialog">
+        <div class="modal-content modal-container">
+            <form method="POST" asp-action="Update" asp-controller="User">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title">Actualizar Usuario</h4>
+                </div>
+                <div class="modal-body modal-body-inputs">
+                    <input type="hidden" value="@Model.UserID" name="UserID" />
+                    <input type="text" asp-for="email" value="@Model.email" class="form-control input-bordered-white">
+                    <input type="password" asp-for="pass" value="@Model.pass" class="form-control input-bordered-white">
+                </div>
+                <div class="modal-footer border-0 modal-conte-buttons">
+                    <button type="submit" class="btn btn-light">
+                        GUARDAR
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

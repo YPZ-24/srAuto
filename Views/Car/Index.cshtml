@@ -1,23 +1,33 @@
 @{
     ViewData["Title"] = "Sr.  Auto";
+    @model Car
 }
 
 <div class="row p-3">
     <div class="col-sm-12 col-md-4 col-lg-3 px-3">
         <div class="gradient-gray border-top-radius-lg">
-            <img class="img-fluid mx-auto d-block car-photo-profile border-top-radius-lg" src="https://cdn.topgear.es/sites/navi.axelspringer.es/public/styles/480/public/media/image/2018/06/bugatti-chiron-nurburgring_0.jpg?itok=0TUR83J8" alt="">
+            <img class="img-fluid mx-auto d-block car-photo-profile border-top-radius-lg" src="@Model.photoUrl" alt="">
             <div  class="text-center p-3">
                 <p class="m-0 h6">MATRICULA</p>
-                <p class="m-0 mb-2">MATRICULA</p>
+                <p class="m-0 mb-2">@Model.carTag</p>
                 <p class="m-0 h6">MARCA</p>
-                <p class="m-0 mb-2">MARCA</p>
+                <p class="m-0 mb-2">@Model.brand</p>
                 <p class="m-0 h6">MODELO</p>
-                <p class="m-0">MODELO</p>
-                <partial name="_UpdateCarModal" />
-                <partial name="_CreateNotificationModal" />
+                <p class="m-0">@Model.model</p>
+                @await Html.PartialAsync("_UpdateCarModal", Model)
                 <button class="btn btn-neon-yellow btn-block mt-3" data-toggle="modal" data-target="#updateCarModal">ACTUALIZAR</button>
-                <button class="btn btn-neon-yellow btn-block mt-3" data-toggle="modal" data-target="#createNotificationModal">NOTIFICAR</button>
-                <a id="btnActualiza" href="#email" class="btn btn-neon-yellow btn-block mt-3">VER DUEÑO</a>
+                @(
+                    await Html.PartialAsync("_GenericDeleteModal",
+                        new ViewDataDictionary(ViewData){
+                            { "modalId", @Model.CarID },
+                            { "modalNameId", "CarID" },
+                            { "modalTitle", "¿Seguro que desea eliminar este Auto?" },
+                            { "modalFormAction", "Delete" },
+                            { "modalFormController", "Car" }                                    
+                        }
+                    )
+                )
+                <button class="btn btn-neon-yellow btn-block mt-3" data-toggle="modal" data-target="#genericDeleteModal-@Model.CarID">ELIMINAR</button>
             </div>
         </div>
     </div>
@@ -36,63 +46,68 @@
         </div>
         <!--Lista de reparaciones-->
         <div class="row">
-        @{for(var i=0; i<15; i++){
-            <partial name="_DateModal" />
-            <div class="col-sm-12 col-lg-4 mb-3" data-toggle="modal" data-target="#dateModal">
-                <div class="card car-card car-card-orange">
+        @foreach (Date d in (List<Date>) ViewData["carDates"]){
+            @await Html.PartialAsync("_UpdateDateModal", d)
+            <div class="col-sm-12 col-lg-4 mb-3" data-toggle="modal" data-target="#updateDateModal-@d.DateID">
+                @{
+                    string dateStatusTxt = "";
+                    string dateCardColor = "";
+                    
+                    switch (d.DateReasonID){
+                        case 1: 
+                            //Preventivo
+                            dateCardColor = "car-card-orange";
+                            break;
+                        case 2: 
+                            //Correctivo
+                            dateCardColor = "car-card-red";
+                            break;
+                    }
+
+                    switch (d.status){
+                        case 1: 
+                            dateStatusTxt = "CREADA";
+                            break;
+                        case 2: 
+                            dateStatusTxt = "PAGADA";
+                            break;
+                    }
+                }
+                <div class="card car-card @dateCardColor">
                     <div class="row g-0">
                         <div class="col-md-3 p-0 car-card-icon-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-cone-striped car-card-icon" viewBox="0 0 16 16">
-                                <path fill="#ffbb0f" d="m9.97 4.88.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.158-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z"/>
-                            </svg>
+                            @if (d.DateReasonID == 1){  //Preventivo
+                                <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-cone-striped car-card-icon" viewBox="0 0 16 16">
+                                    <path fill="#ffbb0f" d="m9.97 4.88.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.158-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z"/>
+                                </svg>
+                            }
+                            @if (d.DateReasonID == 2){  //Correctivo
+                                <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-cone-striped car-card-icon" viewBox="0 0 16 16">
+                                    <path fill="#ff0f37" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                                </svg>
+                            }
                         </div>
                         <div class="col-md-9">
                         <div class="card-body">
-                            <h3 class="card-title m-0">06 / 12 / 2021</h3>
-                            <p class="card-text m-0">$300</p>
-                            <p class="card-text m-0">En progreso</p>
+                            <h3 class="card-title m-0">@d.datet.ToString("dd/MM/yyyy")</h3>
+                            <p class="card-text m-0">@dateStatusTxt</p>
                         </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-lg-4 mb-3" data-toggle="modal" data-target="#dateModal">
-                <div class="card car-card car-card-green">
-                    <div class="row g-0">
-                        <div class="col-md-3 p-0 car-card-icon-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-cone-striped car-card-icon" viewBox="0 0 16 16">
-                                <path fill="#37ff0f" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/>
-                            </svg>
-                        </div>
-                        <div class="col-md-9">
-                        <div class="card-body">
-                            <h3 class="card-title m-0">06 / 12 / 2021</h3>
-                            <p class="card-text m-0">$300</p>
-                            <p class="card-text m-0">En progreso</p>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-4 mb-3" data-toggle="modal" data-target="#dateModal">
-                <div class="card car-card car-card-red">
-                    <div class="row g-0">
-                        <div class="col-md-3 p-0 car-card-icon-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-cone-striped car-card-icon" viewBox="0 0 16 16">
-                                <path fill="#ff0f37" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
-                            </svg>
-                        </div>
-                        <div class="col-md-9">
-                        <div class="card-body">
-                            <h3 class="card-title m-0">06 / 12 / 2021</h3>
-                            <p class="card-text m-0">$300</p>
-                            <p class="card-text m-0">En progreso</p>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }}
+        }
         </div>
     </div>
 </div>
+
+<!--Modal Info-->
+@await Html.PartialAsync("_InfoModal")
+@section scripts{
+    <script>
+        @{
+            if (ViewData["showInfoModal"] == null){ ViewData["showInfoModal"] = "hide"; }
+        }
+        $('#InfoModal').modal('@ViewData["showInfoModal"]')
+    </script>
+}
