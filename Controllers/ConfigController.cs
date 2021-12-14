@@ -45,6 +45,18 @@ namespace SrAuto.Controllers
             return View(subjects);
         }
 
+        public IActionResult DateReasons()
+        {
+            ViewData["kindInfoModal"] = TempData["kindInfoModal"];
+            if(ViewData["kindInfoModal"] != null) {
+                ViewData["showInfoModal"] = "show";
+                ViewData["msjInfoModal"] = TempData["msjInfoModal"];
+            }
+            
+            List<DateReason> dateReasons = _context.DateReasons.ToList<DateReason>();
+            return View(dateReasons);
+        }
+
         public IActionResult Fixes()
         {
             ViewData["kindInfoModal"] = TempData["kindInfoModal"];

@@ -9,11 +9,22 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <nav class="navbar p-0 navbar-gray mb-3">
-        <marquee loop="infinite">
-            SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto - SrAuto
-        </marquee>
+    <nav class="navbar navbar-expand-lg navbar-light navbar-yellow">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-item nav-link" href="~/Config/Clients">Clientes<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="~/Config/DateReasons">Razones de Cita</a>
+            <a class="nav-item nav-link" href="~/Config/Dates">Citas</a>
+            <a class="nav-item nav-link" href="~/Config/Fixes">Arreglos</a>
+            <a class="nav-item nav-link" href="~/Config/Subjects">Asuntos Notificación</a>
+            <a class="nav-item nav-link" href="~/Config/Users">Usuarios</a>
+            </div>
+        </div>
     </nav>
+
     <div class="container-fluid">
         @RenderBody()
     </div>

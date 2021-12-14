@@ -15644,6 +15644,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Config\\DateReasons.cshtml",
+      "TargetPath": "Views\\Config\\DateReasons.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_InfoModal.cshtml",
       "TargetPath": "Views\\Shared\\_InfoModal.cshtml",
       "FileKind": "mvc"
@@ -15711,6 +15716,16 @@
     {
       "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_CreateNotificationModal.cshtml",
       "TargetPath": "Views\\Shared\\_CreateNotificationModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_CreateDateReasonModal.cshtml",
+      "TargetPath": "Views\\Shared\\_CreateDateReasonModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Desktop\\SrAuto\\Views\\Shared\\_UpdateDateReasonModal.cshtml",
+      "TargetPath": "Views\\Shared\\_UpdateDateReasonModal.cshtml",
       "FileKind": "mvc"
     },
     {

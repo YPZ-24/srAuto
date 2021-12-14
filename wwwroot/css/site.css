@@ -133,16 +133,9 @@ body{
   padding: 5px;
 }
 
-.navbar-gray{
-  /*background: #0ccbd8;*/
+.navbar-yellow{
   background: #d3dd14;
   font-weight: bold;
-  width: 100%;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.3rem !important;
 }
 
 .car-card:hover{
@@ -170,6 +163,7 @@ body{
 .input-bordered-white{
   border: 1px solid rgb(218, 218, 218);
   background-color: transparent;
+  color: white;
 }
 
 .input-bordered-white:hover{

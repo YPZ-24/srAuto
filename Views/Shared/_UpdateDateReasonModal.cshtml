@@ -1,12 +1,17 @@
-<div class="modal fade" id="createSubjectModal">
+@{
+    @model DateReason
+}
+
+<div class="modal fade" id="updateDateReasonModal-@Model.DateReasonID">
     <div class="modal-dialog">
         <div class="modal-content modal-container">
-            <form method="POST" asp-action="Create" asp-controller="Subject">
+            <form method="POST" asp-action="Update" asp-controller="DateReason">
                 <div class="modal-header border-0">
-                    <h4 class="modal-title">Crear Asunto</h4>
+                    <h4 class="modal-title">Actualizar Asunto</h4>
                 </div>
                 <div class="modal-body modal-body-inputs">
-                    <input type="text" name="subject" placeholder="Asunto" class="form-control input-bordered-white" required>
+                    <input type="hidden" value="@Model.DateReasonID" name="DateReasonID" />
+                    <input type="text" asp-for="reason" value="@Model.reason" class="form-control input-bordered-white">
                 </div>
                 <div class="modal-footer border-0 modal-conte-buttons">
                     <button type="submit" class="btn btn-light">
